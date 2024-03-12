@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+    php_jenkins_laravel:
+        container_name: php_jenkins_laravel
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        volumes:
+            - /home/akshit/laravel/data:/var/www/html/
+        ports:
+            - 8207:80
+        restart: unless-stopped
+
+    mysql-jenkins_db:
+        image: mysql:8.0.35
+        container_name: php_jenkins_db
+        volumes:
+            - /home/akshit/database:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=laraveldemo
+        ports:
+            - '10065:3306'
+        restart: unless-stopped
