@@ -6,8 +6,7 @@ pipeline {
     stages { 
         stage('fetch code') {
             steps {
-                git url:'https://github.com/akshitelsner/laravel-project.git'
-                branch:'master'
+                git branch: 'master', url: 'https://github.com/akshitelsner/laravel-project.git'
             }
         }
         stage('sonarqube analysis') {
