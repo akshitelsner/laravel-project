@@ -1,18 +1,15 @@
 pipeline {
     agent any
-    environment {
-        scannerHome = tool 'sonar'
-    }
     stages { 
         stage('fetch code') {
             steps {
-                git branch: 'master', url: 'https://github.com/akshitelsner/laravel-project.git'
+                git branch: 'master', url:'https://github.com/akshitelsner/laravel-project.git'
             }
         }
         stage('sonarqube analysis') {
             steps {
-                withSonarQubeEnv('sonar') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                withSonarQubeEnv(installationName: 'sonar') {
+                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
                 }
             }
         }
