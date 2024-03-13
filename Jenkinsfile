@@ -9,7 +9,7 @@ pipeline {
         stage('sonarqube analysis') {
             steps {
                 withSonarQubeEnv(installationName: 'sonar') {
-                    sh './mvnw clean org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar'
+                    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-test"
                 }
             }
         }
