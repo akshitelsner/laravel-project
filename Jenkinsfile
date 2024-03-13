@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        mvn = tool 'Maven'
+    }
     stages { 
         stage('fetch code') {
             steps {
